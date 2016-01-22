@@ -59,12 +59,11 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("PhotosTableViewCell", forIndexPath: indexPath) as? PhotosTableViewCell
-    
-        let imageURL = NSURL(string: photos![indexPath.row].valueForKey("images.standard_resolution.url") as! String)
+        let cell = tableView.dequeueReusableCellWithIdentifier("PhotoCell", forIndexPath: indexPath) as? PhotosTableViewCell
+        
+        let imageURL = NSURL(string: photos![indexPath.row].valueForKeyPath("images.standard_resolution.url") as! String)
         
         cell?.photosView.setImageWithURL(imageURL!)
-        
         
         return cell!
     }
