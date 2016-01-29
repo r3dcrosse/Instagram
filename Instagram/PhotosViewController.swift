@@ -73,6 +73,18 @@ class PhotosViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
 
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        var vc = segue.destinationViewController as! PhotoDetailsViewController
+        var indexPath = tableView.indexPathForCell(sender as! PhotosTableViewCell)
+        if let imageURL = NSURL(string: photos![indexPath!.row].valueForKeyPath("images.standard_resolution.url") as! String){
+            print(imageURL)
+            //vc.photoView.setImageWithURL(imageURL)
+            vc.photoUrl = imageURL
+        }
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
 }
 
